@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "a25fc41c-4c5a-42c7-a8cc-784b4447bcf5": {
+      "ProjectGuid": "a25fc41c-4c5a-42c7-a8cc-784b4447bcf5",
+      "DisplayName": "YupGamesChatServer",
+      "ColorIndex": 0
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Прочие файлы",
+      "ColorIndex": -1
+    }
+  },
+  "NextColorIndex": 1
+}

@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "rwQ+0C2ab4aA/umSF/RFH4uXSByhlxaAU/XK7QtfnEuL5BuM7Tq4T78b9E8VyD5L2K9GyX7wD/wMU/JPIdp0Xw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\yup_c\\source\\repos\\YupGamesChatServer\\YupGamesChatServer\\YupGamesChatServer.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\yup_c\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
