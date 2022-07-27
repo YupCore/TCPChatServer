@@ -83,9 +83,6 @@ namespace YupGamesChatServer
                 connectionDate = DateTime.Now;
                 theClient = Client;
                 WriteLog("new connection from " + ((IPEndPoint)Client.Client.RemoteEndPoint).Address.ToString());
-                // Буфер для хранения принятых от клиента данных
-                // Переменная для хранения количества байт, принятых от клиента
-                // Читаем из потока клиента до тех пор, пока от него поступают данные
 
                 WriteLog("receiving");
                 ClientsList.clients.Add(this);
@@ -120,11 +117,11 @@ namespace YupGamesChatServer
                     float gameVer;
                     using (var wc = new WebClient())
                     {
-                        gameVer = float.Parse(wc.DownloadString("https://yupgamesfiles.ddns.net/gamever.txt"));
+                        gameVer = float.Parse(wc.DownloadString("https://yourdomain/gamever.txt"));
                     }
                     if (hnds.gameVersion == gameVer)
                     {
-                        if (hnds.passwordHash == GetMD5FromString("YGSHUI1937GH01@^)&!"))
+                        if (hnds.passwordHash == GetMD5FromString("ENTER PASSWORD HERE"))
                         {
                             handshakeSuccsesful = true;
                             byte[] resp = Encoding.UTF8.GetBytes("HANDSHAKE SUCCESSFUL");
@@ -293,21 +290,19 @@ namespace YupGamesChatServer
 
     class Server
     {
-        TcpListener Listener; // Объект, принимающий TCP-клиентов
+        TcpListener Listener; 
 
         // Запуск сервера
         public Server(int Port)
         {
-            Listener = new TcpListener(IPAddress.Any, Port); // Создаем "слушателя" для указанного порта
-            Listener.Start(); // Запускаем его
-
-            // В бесконечном цикле
+            Listener = new TcpListener(IPAddress.Any, Port); 
+            Listener.Start(); 
+            
             while (true)
             {
                 try
                 {
-                    // Принимаем новых клиентов. После того, как клиент был принят, он передается в новый поток (ClientThread)
-                    // с использованием пула потоков.
+                  
                     ThreadPool.QueueUserWorkItem(new WaitCallback(ClientThread), Listener.AcceptTcpClient());
                 }
                 catch
@@ -320,16 +315,12 @@ namespace YupGamesChatServer
         static void ClientThread(Object StateInfo)
         {
             new Client((TcpClient)StateInfo);
-            // Просто создаем новый экземпляр класса Client и передаем ему приведенный к классу TcpClient объект StateInfo    
         }
 
-        // Остановка сервера
         ~Server()
         {
-            // Если "слушатель" был создан
             if (Listener != null)
             {
-                // Остановим его
                 Listener.Stop();
             }
         }
@@ -339,14 +330,9 @@ namespace YupGamesChatServer
             static void Main(string[] args)
             {
                 Directory.CreateDirectory("./logs");
-                // Определим нужное максимальное количество потоков
-                // Пусть будет по 4 на каждый процессор
                 int MaxThreadsCount = Environment.ProcessorCount * 4;
-                // Установим максимальное количество рабочих потоков
                 ThreadPool.SetMaxThreads(MaxThreadsCount, MaxThreadsCount);
-                // Установим минимальное количество рабочих потоков
                 ThreadPool.SetMinThreads(2, 2);
-                // Создадим новый сервер на порту 1420
                 new Server(1420);
             }
         }
