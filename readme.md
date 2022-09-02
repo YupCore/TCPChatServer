@@ -1,4 +1,4 @@
-C# message exchange server, with handshakes for authentication with rooms system. Usage(unity):
+C# message exchange server, with handshakes for authentication and a room system. Usage(unity):
 
 ```cs
 using System;
